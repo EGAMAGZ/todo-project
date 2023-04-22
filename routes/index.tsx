@@ -2,8 +2,8 @@ import { IconCheck, IconChecks } from "tabler-icons";
 
 import { Head } from "$fresh/runtime.ts";
 import Header from "../components/Header.tsx";
-import TaskPanel from "../islands/TaskPanel.tsx";
 import NewTaskInput from "../islands/Input.tsx";
+import AllTaskList from "../islands/List.tsx";
 
 export default function IndexPage() {
   return (
@@ -19,10 +19,8 @@ export default function IndexPage() {
               Create new task
             </span>
             <NewTaskInput />
+            <AllTaskList />
           </div>
-          <TaskPanel />
-          <IconChecks size="24" />
-          <IconCheck size="24" />
         </div>
       </div>
     </>

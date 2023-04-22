@@ -45,7 +45,7 @@ export default function NewTaskInput() {
           onInput={onInput}
           disabled={!IS_BROWSER}
         />
-        <button class="inline-flex items-center text-uppercase font-medium">
+        <button class="inline-flex items-center text-uppercase font-medium bg-red-500 px-4 py-1 text-white">
           Add
           <IconPlus size={24} />
         </button>
