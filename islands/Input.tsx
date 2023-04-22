@@ -14,11 +14,11 @@ export default function NewTaskInput() {
       isValid.value = false;
       return;
     }
-
     addTask({
       title: taskTitle.value,
       id: crypto.randomUUID(),
       completed: false,
+      createdAt: new Date(),
     });
 
     taskTitle.value = "";
