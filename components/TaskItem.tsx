@@ -1,3 +1,4 @@
+import { useSignal } from "@preact/signals";
 import { Task } from "../util/types.ts";
 
 interface TaskItemProps {
@@ -5,6 +6,8 @@ interface TaskItemProps {
 }
 
 export default function TaskItem({ task }: TaskItemProps) {
+  const isExpanded = useSignal<boolean>(false);
+
   return (
     <div class="bg-white rounded-sm p-2">
       <div class="flex">
