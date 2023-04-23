@@ -13,7 +13,7 @@ export default function IndexPage() {
         <div class="container flex flex-col gap-4 mx-auto">
           <Header />
           <div class="bg-gray-200 rounded-md p-4 flex flex-col gap-2">
-            <span class="font-semibold text-underline text-xl">
+            <span class="font-semibold text-xl">
               Create new task
             </span>
             <NewTaskInput />

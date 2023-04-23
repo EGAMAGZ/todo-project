@@ -5,12 +5,12 @@ export default function AllTaskList() {
   const [tasks] = useTaskList();
   return (
     <div>
-      {tasks.map((task, index) => (
+      { tasks.length > 0 ? tasks.map((task, index) => (
         <>
           <TaskItem task={task} />
           {index < tasks.length - 1 && <hr />}
         </>
-      ))}
+      )) : <></>}
     </div>
   );
 }

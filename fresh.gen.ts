@@ -4,18 +4,16 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/index.tsx";
-import * as $$0 from "./islands/Counter.tsx";
-import * as $$1 from "./islands/Input.tsx";
-import * as $$2 from "./islands/List.tsx";
+import * as $$0 from "./islands/Input.tsx";
+import * as $$1 from "./islands/List.tsx";
 
 const manifest = {
   routes: {
     "./routes/index.tsx": $0,
   },
   islands: {
-    "./islands/Counter.tsx": $$0,
-    "./islands/Input.tsx": $$1,
-    "./islands/List.tsx": $$2,
+    "./islands/Input.tsx": $$0,
+    "./islands/List.tsx": $$1,
   },
   baseUrl: import.meta.url,
   config,
