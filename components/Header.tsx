@@ -1,4 +1,4 @@
-import { IconChecks } from "tabler-icons";
+import { IconChecks } from "./Icons.tsx";
 
 export default function Header() {
   const date = new Date();
@@ -14,7 +14,7 @@ export default function Header() {
       <span class="text-6xl text-white font-semibold">TODO Tasks</span>
       <span class="text-xl text-white font-light">{formattedDate}</span>
       <div class="absolute bottom-0 right-0">
-        <IconChecks size="320" color="#FAA4A5" />
+        <IconChecks size={320} color="#FAA4A5" />
       </div>
     </div>
   );

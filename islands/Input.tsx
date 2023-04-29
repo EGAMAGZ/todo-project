@@ -1,19 +1,20 @@
-import { useSignal } from "@preact/signals";
+import { useComputed, useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import useTaskList from "../hooks/useTaskList.tsx";
-import IconPlus from "../components/Icons.tsx";
+import { IconPlus, IconX } from "../components/Icons.tsx";
 // TODO: Check why IconPlus from table-icons downloads node_modules and launches error.
 
 export default function NewTaskInput() {
-  const isValid = useSignal<boolean>(true);
-  const { addTask } = useTaskList();
-
   const taskTitle = useSignal<string>("");
 
-  const onSubmit = (event: Event) => {
+  const isEmpty = useSignal<boolean>(false);
+  const isValid = useComputed(() => !isEmpty.value);
+  const { addTask } = useTaskList();
+
+  const handleSubmit = (event: Event) => {
     event.preventDefault();
     if (taskTitle.value.trim() === "") {
-      isValid.value = false;
+      isEmpty.value = true;
       return;
     }
 
@@ -25,28 +26,45 @@ export default function NewTaskInput() {
     });
 
     taskTitle.value = "";
-    isValid.value = true;
+    isEmpty.value = false;
   };
 
-  const onInput = (event: Event) => {
+  const handleInput = (event: Event) => {
     const value = (event.target as HTMLInputElement).value;
 
-    isValid.value = value.trim() !== "";
+    isEmpty.value = value.trim() === "";
     taskTitle.value = value;
   };
 
+  const clearInput = () => {
+    taskTitle.value = "";
+  };
+
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <div class="flex bg-white rounded-sm p-2">
         <input
           type="text"
           placeholder="New task"
           class="flex-1 bg-transparent outline-none	"
           value={taskTitle}
-          onInput={onInput}
+          onInput={handleInput}
           disabled={!IS_BROWSER}
         />
-        <button class="inline-flex items-center text-uppercase font-medium bg-red-500 px-4 py-1 text-white rounded-sm">
+        {taskTitle.value.trim() !== "" && (
+          <button
+            type="button"
+            class="mx-2"
+            onClick={clearInput}
+            disabled={!IS_BROWSER}
+          >
+            <IconX size={24} />
+          </button>
+        )}
+        <button
+          class="inline-flex items-center text-uppercase font-medium bg-red-500 px-4 py-1 text-white rounded-sm"
+          disabled={!IS_BROWSER}
+        >
           Add
           <IconPlus size={24} />
         </button>

@@ -13,7 +13,9 @@ interface TaskList {
 
 export default function useTaskList(): TaskList {
   useSignalEffect(() => {
-    taskList.value = JSON.parse(window.localStorage.getItem("tasks") || "[]");
+    taskList.value = JSON.parse(
+      window.localStorage.getItem("tasks") || "[]",
+    );
   });
 
   const addTask = (task: Task) => {
