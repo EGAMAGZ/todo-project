@@ -2,7 +2,6 @@ import { useComputed, useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import useTaskList from "../hooks/useTaskList.tsx";
 import { IconPlus, IconX } from "../components/Icons.tsx";
-// TODO: Check why IconPlus from table-icons downloads node_modules and launches error.
 
 export default function NewTaskInput() {
   const taskTitle = useSignal<string>("");
