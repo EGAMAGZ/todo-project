@@ -1,4 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
+import Card from "../components/Card.tsx";
 import Header from "../components/Header.tsx";
 import NewTaskInput from "../islands/Input.tsx";
 import AllTaskList from "../islands/List.tsx";
@@ -12,15 +13,15 @@ export default function IndexPage() {
       <div class="p-4">
         <div class="container flex flex-col gap-4 mx-auto">
           <Header />
-          <div class="bg-gray-200 rounded-md p-4 flex flex-col gap-2">
+          <Card>
             <span class="font-semibold text-xl">
               Create new task
             </span>
             <NewTaskInput />
-          </div>
-          <div class="bg-gray-200 rounded-md p-4 flex flex-col gap-2">
+          </Card>
+          <Card>
             <AllTaskList />
-          </div>
+          </Card>
         </div>
       </div>
     </>
