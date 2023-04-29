@@ -6,16 +6,17 @@ import IconPlus from "../components/Icons.tsx";
 
 export default function NewTaskInput() {
   const isValid = useSignal<boolean>(true);
-  const [_, addTask] = useTaskList();
+  const { addTask } = useTaskList();
 
   const taskTitle = useSignal<string>("");
 
-  function onSubmit(event: Event) {
+  const onSubmit = (event: Event) => {
     event.preventDefault();
     if (taskTitle.value.trim() === "") {
       isValid.value = false;
       return;
     }
+
     addTask({
       title: taskTitle.value,
       id: crypto.randomUUID(),
@@ -25,14 +26,14 @@ export default function NewTaskInput() {
 
     taskTitle.value = "";
     isValid.value = true;
-  }
+  };
 
-  function onInput(event: Event) {
+  const onInput = (event: Event) => {
     const value = (event.target as HTMLInputElement).value;
 
     isValid.value = value.trim() !== "";
     taskTitle.value = value;
-  }
+  };
 
   return (
     <form onSubmit={onSubmit}>
