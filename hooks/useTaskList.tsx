@@ -1,7 +1,8 @@
 import { Signal, signal, useSignalEffect } from "@preact/signals";
 import { Task } from "../util/types.ts";
+import { taskList } from "../store/taskList.tsx";
 
-const taskList = signal<Task[]>([]);
+
 
 interface TaskListManager {
   tasks: Task[];
@@ -39,20 +40,4 @@ export default function useTaskListManager(): TaskListManager {
     taskList.value.find((task) => task.id === taskId);
 
   return { tasks: taskList.value, addTask, updateTask, deleteTask, getTask };
-}
-
-export function useTaskListInput() {
-  const addTask = (title: string) => {
-    const newTask: Task = {
-      id: crypto.randomUUID(),
-      title: title,
-      createdAt: new Date(),
-      completed: false,
-    };
-
-    taskList.value = [...taskList.value, newTask];
-    window.localStorage.setItem("tasks", JSON.stringify(taskList.value));
-  };
-
-  return { addTask };
 }

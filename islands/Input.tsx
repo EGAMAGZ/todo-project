@@ -1,6 +1,6 @@
 import { useComputed, useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { useTaskListInput } from "../hooks/useTaskList.tsx";
+import useTaskListInput from "../hooks/useTaskListInput.tsx";
 import { IconPlus, IconX } from "../components/Icons.tsx";
 
 export default function NewTaskInput() {
