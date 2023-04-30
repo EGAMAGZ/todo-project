@@ -1,6 +1,6 @@
 import { useComputed, useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import useTaskList from "../hooks/useTaskList.tsx";
+import { useTaskListInput } from "../hooks/useTaskList.tsx";
 import { IconPlus, IconX } from "../components/Icons.tsx";
 
 export default function NewTaskInput() {
@@ -8,7 +8,7 @@ export default function NewTaskInput() {
 
   const isEmpty = useSignal<boolean>(false);
   const isValid = useComputed(() => !isEmpty.value);
-  const { addTask } = useTaskList();
+  const { addTask } = useTaskListInput();
 
   const handleSubmit = (event: Event) => {
     event.preventDefault();
@@ -17,12 +17,7 @@ export default function NewTaskInput() {
       return;
     }
 
-    addTask({
-      title: taskTitle.value,
-      id: crypto.randomUUID(),
-      completed: false,
-      createdAt: new Date(),
-    });
+    addTask(taskTitle.value);
 
     taskTitle.value = "";
     isEmpty.value = false;

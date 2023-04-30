@@ -1,7 +1,7 @@
-import useTaskList from "../hooks/useTaskList.tsx";
+import useTaskListManager from "../hooks/useTaskList.tsx";
 
 export default function TasksStats() {
-  const { tasks } = useTaskList();
+  const { tasks } = useTaskListManager();
 
   return (
     <div class="flex">

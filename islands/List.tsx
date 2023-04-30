@@ -1,5 +1,5 @@
 import TaskItem from "../components/TaskItem.tsx";
-import useTaskList from "../hooks/useTaskList.tsx";
+import useTaskListManager from "../hooks/useTaskList.tsx";
 import { Task } from "../util/types.ts";
 
 function CompletedTasks({ completedTasks, updateTask }: {
@@ -38,7 +38,7 @@ function IncompleteTasks({ incompleteTasks, updateTask }: {
 }
 
 export default function AllTaskList() {
-  const { tasks, updateTask } = useTaskList();
+  const { tasks, updateTask } = useTaskListManager();
   const completedTasks = tasks.filter((task) => task.completed);
 
   const incompletedTasks = tasks.filter((task) => !task.completed);

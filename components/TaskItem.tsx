@@ -28,7 +28,7 @@ export default function TaskItem({ task, updateTask }: TaskItemProps) {
             {task.title}
           </span>
           <span>
-            {task.createdAt}
+            {task.createdAt.toLocaleString()}
           </span>
         </div>
       </div>

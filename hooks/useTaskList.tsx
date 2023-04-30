@@ -3,7 +3,7 @@ import { Task } from "../util/types.ts";
 
 const taskList = signal<Task[]>([]);
 
-interface TaskList {
+interface TaskListManager {
   tasks: Task[];
   addTask: (task: Task) => void;
   updateTask: (taskId: string, updatedTask: Task) => void;
@@ -11,7 +11,7 @@ interface TaskList {
   getTask: (taskId: string) => Task | undefined;
 }
 
-export default function useTaskList(): TaskList {
+export default function useTaskListManager(): TaskListManager {
   useSignalEffect(() => {
     taskList.value = JSON.parse(
       window.localStorage.getItem("tasks") || "[]",
@@ -39,4 +39,20 @@ export default function useTaskList(): TaskList {
     taskList.value.find((task) => task.id === taskId);
 
   return { tasks: taskList.value, addTask, updateTask, deleteTask, getTask };
+}
+
+export function useTaskListInput() {
+  const addTask = (title: string) => {
+    const newTask: Task = {
+      id: crypto.randomUUID(),
+      title: title,
+      createdAt: new Date(),
+      completed: false,
+    };
+
+    taskList.value = [...taskList.value, newTask];
+    window.localStorage.setItem("tasks", JSON.stringify(taskList.value));
+  };
+
+  return { addTask };
 }
