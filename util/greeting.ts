@@ -1,13 +1,17 @@
 import { Greeting } from "./types.ts";
 
 export default function getGreeting(): Greeting {
-    const date = new Date();
-    const hours = date.getHours();
-    if (hours >= 5 && hours < 12) {
-        return "Good morning";
-    } else if (hours >= 12 && hours < 18) {
-        return "Good afternoon";
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    let greeting: Greeting;
+
+    if (currentHour >= 5 && currentHour < 12) {
+        greeting = "Good morning";
+    } else if (currentHour >= 12 && currentHour < 18) {
+        greeting = "Good afternoon";
     } else {
-        return "Good night";
+        greeting = "Good night";
     }
+
+    return greeting;
 }
