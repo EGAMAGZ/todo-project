@@ -7,16 +7,18 @@ function CompletedTasks({ completedTasks, updateTask }: {
   updateTask: (taskId: string, updatedTask: Task) => void;
 }) {
   return (
-    <div>
-      {completedTasks.length > 0 && (
-        <>
-          <span>Completed tasks</span>
-          {completedTasks.map((task) => (
+    <>
+      <span>Completed tasks</span>
+      <div>
+        {completedTasks.map((task, index) => (
+          <>
             <TaskItem task={task} updateTask={updateTask} />
-          ))}
-        </>
-      )}
-    </div>
+
+            {index < completedTasks.length - 1 && <hr />}
+          </>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -25,37 +27,44 @@ function IncompleteTasks({ incompleteTasks, updateTask }: {
   updateTask: (taskId: string, updatedTask: Task) => void;
 }) {
   return (
-    <div>
-      {incompleteTasks.length > 0 &&
-        incompleteTasks.map((task, index) => (
-          <>
-            <TaskItem task={task} updateTask={updateTask} />
-            {index < incompleteTasks.length - 1 && <hr />}
-          </>
-        ))}
-    </div>
+    <>
+      {incompleteTasks.map((task, index) => (
+        <>
+          <TaskItem task={task} updateTask={updateTask} />
+          {index < incompleteTasks.length - 1 && <hr />}
+        </>
+      ))}
+    </>
   );
 }
 
 export default function AllTaskList() {
   const { tasks, updateTask } = useTaskListManager();
-  const completedTasks = tasks.filter((task) => task.completed);
+  const completeTasks = tasks.filter((task) => task.completed);
 
-  const incompletedTasks = tasks.filter((task) => !task.completed);
+  const incompleteTasks = tasks.filter((task) => !task.completed);
 
   return (
     <div>
       {tasks.length > 0
         ? (
           <>
-            <IncompleteTasks
-              incompleteTasks={incompletedTasks}
-              updateTask={updateTask}
-            />
-            <CompletedTasks
-              completedTasks={completedTasks}
-              updateTask={updateTask}
-            />
+            <div>
+              {incompleteTasks.length > 0 && (
+                <IncompleteTasks
+                  incompleteTasks={incompleteTasks}
+                  updateTask={updateTask}
+                />
+              )}
+            </div>
+            <div>
+              {completeTasks.length > 0 && (
+                <CompletedTasks
+                  completedTasks={completeTasks}
+                  updateTask={updateTask}
+                />
+              )}
+            </div>
           </>
         )
         : <span>No tasks</span>}
