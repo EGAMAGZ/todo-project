@@ -1,10 +1,10 @@
-import useTaskListManager from "../hooks/useTaskList.tsx";
+import useTaskListManager from "../hooks/useTaskListManager.tsx";
 
 export default function TasksStats() {
   const { tasks } = useTaskListManager();
 
   return (
-    <div class="flex">
+    <div class="flex gap-2">
       <div class="flex-1 flex flex-col">
         <span class="font-light">
           Total tasks
@@ -13,7 +13,7 @@ export default function TasksStats() {
           {tasks.length}
         </span>
       </div>
-      <div class="inline-block h-full border-3 border-red-500"></div>
+      <div class="border-l-2 border-solid border-gray-400 min-h-full" />
       <div class="flex-1 flex flex-col">
         <span class="font-light">
           Completed tasks

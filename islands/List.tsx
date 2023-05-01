@@ -3,11 +3,14 @@ import TaskItem from "../components/TaskItem.tsx";
 import useTaskListManager from "../hooks/useTaskListManager.tsx";
 import { Task } from "../util/types.ts";
 import { useSignal } from "@preact/signals";
+import { IconCircleX } from "../components/Icons.tsx";
 
-function CompletedTasks({ completedTasks, updateTask }: {
-  completedTasks: Task[];
+interface TaskListProps {
+  tasks: Task[];
   updateTask: (taskId: string, updatedTask: Task) => void;
-}) {
+}
+
+function CompletedTaskList({ tasks, updateTask }: TaskListProps) {
   const showList = useSignal<boolean>(true);
 
   return (
@@ -22,12 +25,13 @@ function CompletedTasks({ completedTasks, updateTask }: {
           size={24}
           class={`transition-transform ${showList.value ? "" : "-rotate-90"}`}
         />
-        <span class="font-semibold">Completed tasks</span>
+        <span class="font-semibold">Completed</span>
+        <span>{tasks.length}</span>
       </button>
       {showList.value &&
         (
           <div class="flex flex-col gap-1">
-            {completedTasks.map((task, index) => (
+            {tasks.map((task, index) => (
               <>
                 <TaskItem task={task} updateTask={updateTask} />
               </>
@@ -38,17 +42,25 @@ function CompletedTasks({ completedTasks, updateTask }: {
   );
 }
 
-function IncompleteTasks({ incompleteTasks, updateTask }: {
-  incompleteTasks: Task[];
-  updateTask: (taskId: string, updatedTask: Task) => void;
-}) {
+function IncompleteTaskList({ tasks, updateTask }: TaskListProps) {
   return (
     <div class="flex flex-col gap-1">
-      {incompleteTasks.map((task, index) => (
+      {tasks.map((task, index) => (
         <>
           <TaskItem task={task} updateTask={updateTask} />
         </>
       ))}
+    </div>
+  );
+}
+
+function EmptyTaskList() {
+  return (
+    <div class="flex flex-col items-center justify-center h-32">
+      <IconCircleX size={64} />
+      <span class="text-xl mt-3">
+        You have no tasks yet.
+      </span>
     </div>
   );
 }
@@ -65,20 +77,20 @@ export default function AllTaskList() {
         ? (
           <div class="flex flex-col gap-2">
             {incompleteTasks.length > 0 && (
-              <IncompleteTasks
-                incompleteTasks={incompleteTasks}
+              <IncompleteTaskList
+                tasks={incompleteTasks}
                 updateTask={updateTask}
               />
             )}
             {completeTasks.length > 0 && (
-              <CompletedTasks
-                completedTasks={completeTasks}
+              <CompletedTaskList
+                tasks={completeTasks}
                 updateTask={updateTask}
               />
             )}
           </div>
         )
-        : <span>No tasks</span>}
+        : <EmptyTaskList />}
     </div>
   );
 }
