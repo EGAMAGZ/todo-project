@@ -1,6 +1,6 @@
 import IconCaretDown from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/caret-down.tsx";
 import TaskItem from "../components/TaskItem.tsx";
-import useTaskListManager from "../hooks/useTaskList.tsx";
+import useTaskListManager from "../hooks/useTaskListManager.tsx";
 import { Task } from "../util/types.ts";
 import { useSignal } from "@preact/signals";
 
