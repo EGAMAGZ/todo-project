@@ -108,6 +108,7 @@
     "https://deno.land/x/importmap@0.2.1/_util.ts": "ada9a9618b537e6c0316c048a898352396c882b9f2de38aba18fd3f2950ede89",
     "https://deno.land/x/importmap@0.2.1/mod.ts": "ae3d1cd7eabd18c01a4960d57db471126b020f23b37ef14e1359bbb949227ade",
     "https://deno.land/x/rutt@0.1.0/mod.ts": "4662ad4f687740ac612b779ed4c62eecebd718b56d24a07f719ec3b24464c139",
+    "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/caret-down.tsx": "860265ed1d3bf2f8c3524ef9dae05db6c51161fb2c66e3ca2082a785045234f0",
     "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/checks.tsx": "29a967d91ce77ea4acfd5753e795412fd608aa34c2b71b7d42c649d7964cee23",
     "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/clipboard-x.tsx": "289d5e32e7ff7380b2ab717c2d802831c2a0209717046badea96e1c0e8596d0d",
     "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/plus.tsx": "1ecb36d15e5b67d9c21c88cc58b51ce38393234b9cc9046359bfdbb26d38b6db",

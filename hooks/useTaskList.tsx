@@ -1,8 +1,6 @@
-import { Signal, signal, useSignalEffect } from "@preact/signals";
+import { useSignalEffect } from "@preact/signals";
 import { Task } from "../util/types.ts";
 import { taskList } from "../store/taskList.tsx";
-
-
 
 interface TaskListManager {
   tasks: Task[];
