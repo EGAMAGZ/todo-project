@@ -1,16 +1,16 @@
-import IconCaretDown from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/caret-down.tsx";
 import TaskItem from "../components/TaskItem.tsx";
 import useTaskListManager from "../hooks/useTaskListManager.tsx";
 import { Task } from "../util/types.ts";
 import { useSignal } from "@preact/signals";
-import { IconCircleX } from "../components/Icons.tsx";
+import { IconCaretDown, IconCircleX } from "../components/Icons.tsx";
 
 interface TaskListProps {
   tasks: Task[];
   updateTask: (taskId: string, updatedTask: Task) => void;
+  deleteTask: (taskId: string) => void;
 }
 
-function CompletedTaskList({ tasks, updateTask }: TaskListProps) {
+function CompletedTaskList({ tasks, updateTask, deleteTask }: TaskListProps) {
   const showList = useSignal<boolean>(true);
 
   return (
@@ -33,7 +33,11 @@ function CompletedTaskList({ tasks, updateTask }: TaskListProps) {
           <div class="flex flex-col gap-1">
             {tasks.map((task, index) => (
               <>
-                <TaskItem task={task} updateTask={updateTask} />
+                <TaskItem
+                  task={task}
+                  updateTask={updateTask}
+                  deleteTask={deleteTask}
+                />
               </>
             ))}
           </div>
@@ -42,12 +46,16 @@ function CompletedTaskList({ tasks, updateTask }: TaskListProps) {
   );
 }
 
-function IncompleteTaskList({ tasks, updateTask }: TaskListProps) {
+function IncompleteTaskList({ tasks, updateTask, deleteTask }: TaskListProps) {
   return (
     <div class="flex flex-col gap-1">
       {tasks.map((task, index) => (
         <>
-          <TaskItem task={task} updateTask={updateTask} />
+          <TaskItem
+            task={task}
+            updateTask={updateTask}
+            deleteTask={deleteTask}
+          />
         </>
       ))}
     </div>
@@ -66,7 +74,7 @@ function EmptyTaskList() {
 }
 
 export default function AllTaskList() {
-  const { tasks, updateTask } = useTaskListManager();
+  const { tasks, updateTask, deleteTask } = useTaskListManager();
   const completeTasks = tasks.filter((task) => task.completed);
 
   const incompleteTasks = tasks.filter((task) => !task.completed);
@@ -80,12 +88,14 @@ export default function AllTaskList() {
               <IncompleteTaskList
                 tasks={incompleteTasks}
                 updateTask={updateTask}
+                deleteTask={deleteTask}
               />
             )}
             {completeTasks.length > 0 && (
               <CompletedTaskList
                 tasks={completeTasks}
                 updateTask={updateTask}
+                deleteTask={deleteTask}
               />
             )}
           </div>

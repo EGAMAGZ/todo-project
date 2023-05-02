@@ -4,12 +4,20 @@ import IconClipboardX from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/clipb
 import IconChecks from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/checks.tsx";
 import IconCaretDown from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/caret-down.tsx";
 import IconCircleX from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/circle-x.tsx";
+import IconCalendarEvent from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/calendar-event.tsx";
+import IconTrash from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/trash.tsx";
+import IconCircleCheck from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/circle-check.tsx";
+import IconCircle from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/circle.tsx";
 
 export {
+  IconCalendarEvent,
   IconCaretDown,
   IconChecks,
+  IconCircle,
+  IconCircleCheck,
   IconCircleX,
   IconClipboardX,
   IconPlus,
+  IconTrash,
   IconX,
 };

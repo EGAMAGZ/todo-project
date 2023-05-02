@@ -6,7 +6,7 @@ export default function TasksStats() {
   return (
     <div class="flex gap-2">
       <div class="flex-1 flex flex-col">
-        <span class="font-light">
+        <span class="font-light text-xl">
           Total tasks
         </span>
         <span class="text-4xl font-semibold">
@@ -15,7 +15,7 @@ export default function TasksStats() {
       </div>
       <div class="border-l-2 border-solid border-gray-400 min-h-full" />
       <div class="flex-1 flex flex-col">
-        <span class="font-light">
+        <span class="font-light text-xl">
           Completed tasks
         </span>
         <span class="text-4xl font-semibold">
