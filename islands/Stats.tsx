@@ -1,4 +1,6 @@
 import useTaskListManager from "../hooks/useTaskListManager.tsx";
+import ProgressBar from "../components/ProgressBar.tsx";
+import { useSignalEffect } from "@preact/signals";
 
 export default function TasksStats() {
   const { tasks } = useTaskListManager();
@@ -14,13 +16,12 @@ export default function TasksStats() {
         </span>
       </div>
       <div class="border-l-2 border-solid border-gray-400 min-h-full" />
-      <div class="flex-1 flex flex-col">
-        <span class="font-light text-xl">
-          Completed tasks
-        </span>
-        <span class="text-4xl font-semibold">
-          {tasks.filter((task) => task.completed).length}
-        </span>
+      <div class="flex-[2] flex flex-col">
+        <ProgressBar
+          max={tasks.length}
+          value={tasks.filter((task) => task.completed).length}
+          label="Complete"
+        />
       </div>
     </div>
   );
