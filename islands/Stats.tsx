@@ -16,7 +16,7 @@ export default function TasksStats() {
       </div>
       <div class="border-l-2 border-solid border-gray-400 min-h-full" />
       <div class="flex-1 flex flex-col">
-        <span>
+        <span class="font-light text-xl">
           Completion percentage
         </span>
         <span class="text-4xl font-semibold">
