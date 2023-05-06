@@ -61,7 +61,7 @@ function EditTask({ taskTitle, onUpdate }: EditTaskProps) {
 
   return (
     <div class="flex-1 flex flex-col gap-2">
-      <label class="font-semibold">Title:</label>
+      <label class="font-semibold">Editing task...</label>
       <div class="flex gap-2">
         <Input
           type="text"
