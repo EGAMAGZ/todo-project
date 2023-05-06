@@ -8,6 +8,9 @@ import IconCalendarEvent from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/ca
 import IconTrash from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/trash.tsx";
 import IconCircleCheck from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/circle-check.tsx";
 import IconCircle from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/circle.tsx";
+import IconPencil from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/pencil.tsx";
+import IconPencilOff from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/pencil-off.tsx";
+import IconDeviceFloppy from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/device-floppy.tsx";
 
 export {
   IconCalendarEvent,
@@ -17,6 +20,9 @@ export {
   IconCircleCheck,
   IconCircleX,
   IconClipboardX,
+  IconDeviceFloppy,
+  IconPencil,
+  IconPencilOff,
   IconPlus,
   IconTrash,
   IconX,

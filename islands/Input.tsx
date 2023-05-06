@@ -40,7 +40,7 @@ export default function NewTaskInput() {
         <input
           type="text"
           placeholder="New task"
-          class="flex-1 bg-transparent outline-none	"
+          class="flex-1 bg-transparent outline-none"
           value={taskTitle}
           onInput={handleInput}
           disabled={!IS_BROWSER}
@@ -56,10 +56,12 @@ export default function NewTaskInput() {
           </button>
         )}
         <button
-          class="inline-flex items-center text-uppercase font-medium bg-red-500 px-4 py-1 text-white rounded-sm"
+          class="inline-flex items-center gap-1 text-uppercase font-medium bg-red-500 px-4 py-1 text-white rounded-sm"
           disabled={!IS_BROWSER}
         >
-          Add
+          <span>
+            Add
+          </span>
           <IconPlus size={24} />
         </button>
       </div>
