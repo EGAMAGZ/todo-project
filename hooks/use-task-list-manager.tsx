@@ -2,6 +2,7 @@ import { useSignalEffect } from "@preact/signals";
 import { Task } from "../util/types.ts";
 import { taskList } from "../store/taskList.tsx";
 import { TASK_KEY_STORAGE } from "../util/constants.ts";
+import useLocalStorage from "./use-local-storage.tsx";
 
 interface TaskListManager {
   tasks: Task[];
@@ -11,36 +12,27 @@ interface TaskListManager {
 }
 
 export default function useTaskListManager(): TaskListManager {
+  const [tasks, setTasks] = useLocalStorage<Task[]>(TASK_KEY_STORAGE);
+
   useSignalEffect(() => {
-    taskList.value = JSON.parse(
-      window.localStorage.getItem(TASK_KEY_STORAGE) || "[]",
-    );
+    taskList.value = tasks ?? [];
   });
 
   const addTask = (task: Task) => {
     taskList.value = [...taskList.value, task];
-    window.localStorage.setItem(
-      TASK_KEY_STORAGE,
-      JSON.stringify(taskList.value),
-    );
+    setTasks(taskList.value);
   };
 
   const updateTask = (taskId: string, updatedTask: Task) => {
     taskList.value = taskList.value.map((
       task,
     ) => (task.id === taskId ? updatedTask : task));
-    window.localStorage.setItem(
-      TASK_KEY_STORAGE,
-      JSON.stringify(taskList.value),
-    );
+    setTasks(taskList.value);
   };
 
   const deleteTask = (taskId: string) => {
     taskList.value = taskList.value.filter((task) => task.id !== taskId);
-    window.localStorage.setItem(
-      TASK_KEY_STORAGE,
-      JSON.stringify(taskList.value),
-    );
+    setTasks(taskList.value);
   };
 
   return { tasks: taskList.value, addTask, updateTask, deleteTask };
