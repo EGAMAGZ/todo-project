@@ -1,4 +1,5 @@
 import { taskList } from "../store/taskList.tsx";
+import { TASK_KEY_STORAGE } from "../util/constants.ts";
 import { Task } from "../util/types.ts";
 
 export default function useTaskListInput() {
@@ -11,7 +12,10 @@ export default function useTaskListInput() {
     };
 
     taskList.value = [...taskList.value, newTask];
-    window.localStorage.setItem("tasks", JSON.stringify(taskList.value));
+    window.localStorage.setItem(
+      TASK_KEY_STORAGE,
+      JSON.stringify(taskList.value),
+    );
   };
 
   return { addTask };

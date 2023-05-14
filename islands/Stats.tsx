@@ -1,4 +1,4 @@
-import useTaskListManager from "../hooks/useTaskListManager.tsx";
+import useTaskListManager from "../hooks/use-task-list-manager.tsx";
 import { percentage } from "../util/math.ts";
 
 export default function TasksStats() {

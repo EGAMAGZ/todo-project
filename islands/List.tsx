@@ -1,5 +1,5 @@
 import TaskItem from "../components/TaskItem.tsx";
-import useTaskListManager from "../hooks/useTaskListManager.tsx";
+import useTaskListManager from "../hooks/use-task-list-manager.tsx";
 import { Task } from "../util/types.ts";
 import { useSignal } from "@preact/signals";
 import { IconCaretDown, IconCircleX } from "../components/Icons.tsx";
