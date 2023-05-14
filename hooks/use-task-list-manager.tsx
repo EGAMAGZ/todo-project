@@ -1,8 +1,10 @@
 import { useSignalEffect } from "@preact/signals";
 import { Task } from "../util/types.ts";
-import { taskList } from "../store/taskList.tsx";
+// import { taskList } from "../store/taskList.tsx";
 import { TASK_KEY_STORAGE } from "../util/constants.ts";
 import useLocalStorage from "./use-local-storage.tsx";
+import { useContext } from "preact/hooks";
+import { TasksState } from "../context/tasks.tsx";
 
 interface TaskListManager {
   tasks: Task[];
@@ -12,6 +14,7 @@ interface TaskListManager {
 }
 
 export default function useTaskListManager(): TaskListManager {
+  const taskList = useContext(TasksState);
   const [tasks, setTasks] = useLocalStorage<Task[]>(TASK_KEY_STORAGE);
 
   useSignalEffect(() => {
