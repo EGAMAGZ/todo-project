@@ -1,7 +1,8 @@
 import { useComputed, useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import useTaskListInput from "../hooks/use-task-list-input.tsx";
-import { IconPlus, IconX } from "../components/Icons.tsx";
+import IconPlus from "@tabler/icons/plus.tsx";
+import IconX from "@tabler/icons/x.tsx";
 
 export default function NewTaskInput() {
   const taskTitle = useSignal<string>("");

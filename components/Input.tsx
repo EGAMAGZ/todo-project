@@ -1,4 +1,3 @@
-import { IS_BROWSER } from "https://deno.land/x/fresh@1.1.5/runtime.ts";
 import { JSX } from "preact/jsx-runtime";
 
 export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {

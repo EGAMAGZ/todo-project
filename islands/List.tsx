@@ -2,7 +2,8 @@ import TaskItem from "../components/TaskItem.tsx";
 import useTaskListManager from "../hooks/use-task-list-manager.tsx";
 import { Task } from "../util/types.ts";
 import { useSignal } from "@preact/signals";
-import { IconCaretDown, IconCircleX } from "../components/Icons.tsx";
+import IconCaretDown from "@tabler/icons/caret-down.tsx";
+import IconCircleX from "@tabler/icons/circle-x.tsx";
 
 interface TaskListProps {
   tasks: Task[];

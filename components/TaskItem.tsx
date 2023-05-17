@@ -1,12 +1,10 @@
 import { Task } from "../util/types.ts";
-import {
-  IconCalendarEvent,
-  IconCircle,
-  IconCircleCheck,
-  IconPencil,
-  IconPencilOff,
-  IconTrash,
-} from "./Icons.tsx";
+import IconCalendarEvent from "@tabler/icons/calendar-event.tsx";
+import IconCircle from "@tabler/icons/circle.tsx";
+import IconCircleCheck from "@tabler/icons/circle-check.tsx";
+import IconPencil from "@tabler/icons/pencil.tsx";
+import IconPencilOff from "@tabler/icons/pencil-off.tsx";
+import IconTrash from "@tabler/icons/trash.tsx";
 import { useSignal } from "@preact/signals";
 import Input from "./Input.tsx";
 import { IS_BROWSER } from "https://deno.land/x/fresh@1.1.5/runtime.ts";

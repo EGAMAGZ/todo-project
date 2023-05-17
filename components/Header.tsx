@@ -1,5 +1,5 @@
 import getGreeting from "../util/greeting.ts";
-import { IconChecks } from "./Icons.tsx";
+import IconChecks from "@tabler/icons/checks.tsx";
 
 export default function Header() {
   const date = new Date();
