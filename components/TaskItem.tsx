@@ -5,10 +5,11 @@ import IconCircleCheck from "@tabler/icons/circle-check.tsx";
 import IconPencil from "@tabler/icons/pencil.tsx";
 import IconPencilOff from "@tabler/icons/pencil-off.tsx";
 import IconTrash from "@tabler/icons/trash.tsx";
-import { useSignal } from "@preact/signals";
+import { useComputed, useSignal } from "@preact/signals";
 import Input from "./Input.tsx";
 import { IS_BROWSER } from "https://deno.land/x/fresh@1.1.5/runtime.ts";
 import IconDeviceFloppy from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/device-floppy.tsx";
+import Alert from "./Alert.tsx";
 
 interface TaskItemProps {
   task: Task;
@@ -46,38 +47,56 @@ function DisplayTask({ task }: DisplayTaskProps) {
 }
 
 function EditTask({ taskTitle, onUpdate }: EditTaskProps) {
+  const isEmpty = useSignal<boolean>(false);
+  const isValid = useComputed(() => !isEmpty.value);
   const title = useSignal(taskTitle);
 
   const handleSubmit = (event: Event) => {
-    const value = (event.target as HTMLInputElement).value;
-    title.value = value;
+    event.preventDefault();
+    if (title.value.trim() === "") {
+      isEmpty.value = true;
+      return;
+    }
+    onUpdate(title.value);
+
+    isEmpty.value = false;
   };
 
-  const handleUpdate = () => {
-    onUpdate(title.value);
+  const handleInput = (event: Event) => {
+    const value = (event.target as HTMLInputElement).value;
+
+    title.value = value;
+    isEmpty.value = value.trim() === "";
+    console.log(isEmpty.value);
   };
 
   return (
-    <div class="flex-1 flex flex-col gap-2">
-      <label class="font-semibold">Editing task...</label>
-      <div class="flex gap-2">
-        <Input
-          type="text"
-          value={title}
-          onChange={handleSubmit}
-        />
-        <button
-          class="inline-flex items-center gap-1 text-uppercase font-medium bg-red-500 px-4 py-1 text-white rounded-sm"
-          disabled={!IS_BROWSER}
-          onClick={handleUpdate}
-        >
-          <span>
-            Save
-          </span>
-          <IconDeviceFloppy size={24} />
-        </button>
+    <form class="flex-1 flex flex-col" onSubmit={handleSubmit}>
+      <div class="flex flex-col gap-2">
+        <label class="font-semibold">Editing task...</label>
+        <div class="flex gap-2">
+          <Input
+            type="text"
+            value={title}
+            onInput={handleInput}
+          />
+          <button
+            class="inline-flex items-center gap-1 text-uppercase font-medium bg-red-500 px-4 py-1 text-white rounded-sm"
+            disabled={!IS_BROWSER}
+          >
+            <span>
+              Save
+            </span>
+            <IconDeviceFloppy size={24} />
+          </button>
+        </div>
       </div>
-    </div>
+      {!isValid.value && (
+        <Alert>
+          <span>Please enter a title.</span>
+        </Alert>
+      )}
+    </form>
   );
 }
 

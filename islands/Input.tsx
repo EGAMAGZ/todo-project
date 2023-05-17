@@ -3,6 +3,7 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import useTaskListInput from "../hooks/use-task-list-input.tsx";
 import IconPlus from "@tabler/icons/plus.tsx";
 import IconX from "@tabler/icons/x.tsx";
+import Alert from "../components/Alert.tsx";
 
 export default function NewTaskInput() {
   const taskTitle = useSignal<string>("");
@@ -68,9 +69,9 @@ export default function NewTaskInput() {
       </div>
 
       {!isValid.value && (
-        <div class="bg-red-400 border-1 border-red-500 text-white px-4 py-2 italic">
-          Please enter a title.
-        </div>
+        <Alert>
+          <span>Please enter a title.</span>
+        </Alert>
       )}
     </form>
   );
