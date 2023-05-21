@@ -67,7 +67,6 @@ function EditTask({ taskTitle, onUpdate }: EditTaskProps) {
 
     title.value = value;
     isEmpty.value = value.trim() === "";
-    console.log(isEmpty.value);
   };
 
   return (

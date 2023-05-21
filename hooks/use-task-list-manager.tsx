@@ -1,4 +1,4 @@
-import { useSignalEffect } from "@preact/signals";
+import { Signal, useSignalEffect } from "@preact/signals";
 import { Task } from "../util/types.ts";
 // import { taskList } from "../store/taskList.tsx";
 import { TASK_KEY_STORAGE } from "../util/constants.ts";
@@ -18,7 +18,9 @@ export default function useTaskListManager(): TaskListManager {
   const [tasks, setTasks] = useLocalStorage<Task[]>(TASK_KEY_STORAGE);
 
   useSignalEffect(() => {
-    taskList.value = tasks ?? [];
+    taskList.value = tasks.value ?? [];
+    console.log("UPDATED");
+    //TODO: SHOULD ONLY BE EXECUTE AT START
   });
 
   const addTask = (task: Task) => {
@@ -31,11 +33,13 @@ export default function useTaskListManager(): TaskListManager {
       task,
     ) => (task.id === taskId ? updatedTask : task));
     setTasks(taskList.value);
+    console.log("updateTask");
   };
 
   const deleteTask = (taskId: string) => {
     taskList.value = taskList.value.filter((task) => task.id !== taskId);
     setTasks(taskList.value);
+    console.log("deleteTask");
   };
 
   return { tasks: taskList.value, addTask, updateTask, deleteTask };
