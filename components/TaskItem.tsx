@@ -7,8 +7,8 @@ import IconPencilOff from "@tabler/icons/pencil-off.tsx";
 import IconTrash from "@tabler/icons/trash.tsx";
 import { useComputed, useSignal } from "@preact/signals";
 import Input from "./Input.tsx";
-import { IS_BROWSER } from "https://deno.land/x/fresh@1.1.5/runtime.ts";
-import IconDeviceFloppy from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/device-floppy.tsx";
+import { IS_BROWSER } from "$fresh/runtime.ts";
+import IconDeviceFloppy from "@tabler/icons/device-floppy.tsx";
 import Alert from "./Alert.tsx";
 
 interface TaskItemProps {
