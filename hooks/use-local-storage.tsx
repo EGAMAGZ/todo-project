@@ -4,7 +4,6 @@ export default function useLocalStorage<T,>(
   key: string,
   initialValue?: T,
 ): [Signal<T | null>, (newValue: T) => void, boolean] {
-  // TODO: CHECK IF IT IS THE BEST IMPLEMENTATION
   const data = useSignal<T | null>(null);
   const loading = useSignal<boolean>(true);
 
